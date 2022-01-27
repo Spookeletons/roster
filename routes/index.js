@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const courseController = require('../controllers/courseController');
+const studentController = require('../controllers/studentController');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('/courses');
+  res.render('index', { title: 'Express' });
 });
 
 router.get('/courses', courseController.viewAll);
@@ -14,4 +16,7 @@ router.post('/courses/edit/:id', courseController.updateCourse);
 router.get('/courses/add', courseController.renderAddForm);
 router.post('/courses/add', courseController.addCourse);
 router.get('/courses/delete/:id', courseController.deleteCourse);
+
+router.get('/students', studentController.viewAll);
+
 module.exports = router;
