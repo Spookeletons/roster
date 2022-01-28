@@ -1,4 +1,5 @@
 const {Student, Course} = require('../models')
+const grade_levels = [9,10,11,12].sort();
 
 //view all
 module.exports.viewAll = async function(req,res){
@@ -17,9 +18,9 @@ module.exports.renderAddForm = function(req,res){
     const student = {
         first_name:'',
         last_name:'',
-        grade_level:''
+        grade_level:[0]
     }
-    res.render('student/add', {student, departments});
+    res.render('student/add', {student, grade_levels});
 }
 
 //add
@@ -35,7 +36,7 @@ module.exports.addStudent = async function(req,res){
 //render edit form
 module.exports.renderEditForm = async function(req,res){
     const student = await Student.findByPk(req.params.id);
-    res.render('student/edit', {student});
+    res.render('student/edit', {student, grade_levels});
 }
 
 //update
