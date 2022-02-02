@@ -9,6 +9,11 @@ block content
         a(href='/students') Back to Students
     div.courses
         h4 Student Courses
+        form(action=`/students/${student.id}/enroll/` method='post')
+            select(name='course' id='course' autocomplete=off)
+                each course in availableCourses
+                    option(value=course.id) #{course.name}
+            button.button(type='submit') Enroll
         table
             thead
                 tr
@@ -24,3 +29,4 @@ block content
                         td= course.department
                         td
                             a(href=`/courses/profile/${course.id}`) View Course
+                            a(href=`/students/${student.id}/removeCourse/${course.id}`) Remove Course
